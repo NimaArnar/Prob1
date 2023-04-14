@@ -48,3 +48,34 @@ print(m.hibernate())
 print(m.description())
 print(m.move())
 print(m.communicate())
+
+class Birds(VertebratesAnimal):
+    def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str, species, wingspan, lifespan, beakkind, is_wild: bool = True):
+        super().__init__(age, gender, diet, name, habitat)
+        self.Species = species
+        self.Wingspan = wingspan
+        self.Lifespan = lifespan
+        self.Beakkind = beakkind
+        self.Is_wild = is_wild
+
+    def fly(self):
+        return f"{self.name} is flying"
+    def sing(self):
+        return f"{self.name} is singing"
+    def buildnests(self):
+        return f"{self.name} builds a nest"
+    def migrate(self):
+        return f"Many species of bird migrate"
+    def hunt(self, bait):
+        if self.Is_wild == True:
+            return f"{self.name} hunted the {bait}"
+        else:
+            return f"{self.name} is not wild"
+b = Birds(12,"male","wheat","parrot","nest","house sparrow", "circle",20,"curvy",True )
+print(b.fly())
+print(b.sing())
+print(b.name)
+print(b.migrate())
+print(b.Wingspan)
+print(b.hunt("rabbit"))
+print(b.buildnests())
