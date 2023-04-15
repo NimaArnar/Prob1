@@ -90,20 +90,20 @@ class Fish(VertebratesAnimal):
         self.Coldblooded = coldblooded
 
     def swim(self):
-        return f"{self.name} swims in the water"
+        return f"{self.name} swims in the water."
     def breathe(self):
         return f"{self.name} breathes using {self.Gills} gills."
     def reproduce(self):
-        return f"{self.name} reproduces with releasing its gametes"
+        return f"{self.name} reproduces with releasing its gametes."
     def getcolor(self):
         return f"{self.name} is {self.Color}."
     def hunt(self, bait):
         return f"{self.name} hunting the {bait}."
     def description(self):
         if self.Coldblooded == True:
-            return f"{self.name} is {self.Species} and coldblooded fish with {self.age} years old"
+            return f"{self.name} is {self.Species} and coldblooded fish with {self.age} years old."
         else:
-            return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old"
+            return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old."
 f = Fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
 print(f.breathe())
 print(f.swim())
@@ -120,13 +120,13 @@ class Reptile(VertebratesAnimal):
         self.Is_wild = is_wild
         self.Reproduction = reproduction
     def move(self):
-        return f"{self.name} is moving"
+        return f"{self.name} is moving."
     def hunt(self, bait):
-        return f"{self.name} hunted the {bait}"
+        return f"{self.name} hunted the {bait}."
     def bask(self):
         return f"{self.name} basks in the sun."
     def shed(self):
-        return f"{self.name} sheds its skin"
+        return f"{self.name} sheds its skin."
     def description(self):
         return f"{self.name} is {self.age} years old. it reproduces with {self.Reproduction} method. it has {self.Weight} kg."
 
@@ -136,3 +136,28 @@ print(r.hunt("fly"))
 print(r.shed())
 print(r.bask())
 print(r.description())
+
+class Amphibians(VertebratesAnimal):
+    def __init__(self, age, gender, diet, name, habitat, skintype, reproduction, breathe, species, hibernates: bool = False):
+        super().__init__(age, gender, diet, name, habitat)
+        self.Skintype = skintype
+        self.Reproduction = reproduction
+        self.Hibernates = hibernates
+        self.Breathe = breathe
+        self.Species = species
+    def breathing(self):
+        return f"{self.name} breathes through its {self.Breathe}."
+    def swim(self):
+        return f"{self.name} can swim."
+    def jump(self):
+        return f"{self.name} is jumping."
+    def camouflage(self, place):
+        return  f"{self.name} can camouflage with {place}."
+    def description(self):
+        return f"{self.name} is {self.Species} amphibian with {self.Skintype} skin. "
+a = Amphibians(2,"male","fly","frogy","fresh water","smooth","eggs","skin","grass frogs",True)
+print(a.breathing())
+print(a.swim())
+print(a.jump())
+print(a.camouflage("trees"))
+print(a.description())
