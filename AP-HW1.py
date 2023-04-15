@@ -80,7 +80,7 @@ print(b.Wingspan)
 print(b.hunt("rabbit"))
 print(b.buildnests())
 
-class fish(VertebratesAnimal):
+class Fish(VertebratesAnimal):
     def __init__(self, age, gender, diet, name, habitat, species, color, lifespan: int, gills: int, coldblooded : bool = True):
         super().__init__(age, gender, diet, name, habitat)
         self.Species = species
@@ -104,10 +104,35 @@ class fish(VertebratesAnimal):
             return f"{self.name} is {self.Species} and coldblooded fish with {self.age} years old"
         else:
             return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old"
-f = fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
+f = Fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
 print(f.breathe())
 print(f.swim())
 print(f.getcolor())
 print(f.description())
 print(f.hunt("little fish"))
 print(f.reproduce())
+
+class Reptile(VertebratesAnimal):
+    def __init__(self, age, gender, diet, name, habitat, weight : int, species, reproduction, is_wild : bool = True):
+        super().__init__(age, gender, diet, name, habitat)
+        self.Weight = weight
+        self.Species = species
+        self.Is_wild = is_wild
+        self.Reproduction = reproduction
+    def move(self):
+        return f"{self.name} is moving"
+    def hunt(self, bait):
+        return f"{self.name} hunted the {bait}"
+    def bask(self):
+        return f"{self.name} basks in the sun."
+    def shed(self):
+        return f"{self.name} sheds its skin"
+    def description(self):
+        return f"{self.name} is {self.age} years old. it reproduces with {self.Reproduction} method. it has {self.Weight} kg."
+
+r = Reptile(4, "male", "meat", "Lizi", "deserts", 5, "Lizard", "lay eggs", False)
+print(r.move())
+print(r.hunt("fly"))
+print(r.shed())
+print(r.bask())
+print(r.description())
