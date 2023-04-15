@@ -79,3 +79,35 @@ print(b.migrate())
 print(b.Wingspan)
 print(b.hunt("rabbit"))
 print(b.buildnests())
+
+class fish(VertebratesAnimal):
+    def __init__(self, age, gender, diet, name, habitat, species, color, lifespan: int, gills: int, coldblooded : bool = True):
+        super().__init__(age, gender, diet, name, habitat)
+        self.Species = species
+        self.Color = color
+        self.Lifespan = lifespan
+        self.Gills = gills
+        self.Coldblooded = coldblooded
+
+    def swim(self):
+        return f"{self.name} swims in the water"
+    def breathe(self):
+        return f"{self.name} breathes using {self.Gills} gills."
+    def reproduce(self):
+        return f"{self.name} reproduces with releasing its gametes"
+    def getcolor(self):
+        return f"{self.name} is {self.Color}."
+    def hunt(self, bait):
+        return f"{self.name} hunting the {bait}."
+    def description(self):
+        if self.Coldblooded == True:
+            return f"{self.name} is {self.Species} and coldblooded fish with {self.age} years old"
+        else:
+            return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old"
+f = fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
+print(f.breathe())
+print(f.swim())
+print(f.getcolor())
+print(f.description())
+print(f.hunt("little fish"))
+print(f.reproduce())
