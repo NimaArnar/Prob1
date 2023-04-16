@@ -188,7 +188,7 @@ print(a.description())
 
 class Whale(Mammals):
     def __init__(self, age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate, weight, color, length):
-        super().__init__( age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate)
+        super().__init__(age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate)
         self.Weight = weight
         self.Color = color
         self.Length = length
@@ -209,3 +209,33 @@ print(w.getLentgh())
 print(w.getColor())
 print(w.getWeight())
 print(w.hunt("red fish"))
+
+class Humans(Mammals):
+    def __init__(self, age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate, left_eye_level: float = 0.0, right_eye_level: float = 0.0 , hair_color: str = "Black",skin_color: str = "White", heart_side: str = "Left"):
+        super().__init__(age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate)
+        self.Left_Eye_Level = left_eye_level
+        self.Right_Eye_Level = right_eye_level
+        self.Hair_Color = hair_color
+        self.Skin_Color = skin_color
+        self.Heart_side = heart_side
+    def display(self):
+        if self.gender == "male":
+            return f"{self.name}' hair color is {self.Hair_Color} and his skin color is {self.Skin_Color}. his heart in {self.Heart_side} side of the body."
+        else:
+            return f"{self.name}' hair color is {self.Hair_Color} and her skin color is {self.Skin_Color}. her heart in {self.Heart_side} side of the body."
+    def eyeslevel(self):
+        return f"{self.name}'s left and right level is ({self.Left_Eye_Level},{self.Right_Eye_Level})."
+    def see(self, target):
+        return f"{self.name} is seeing the {target}."
+    def hear(self, voice):
+        return f"{self.name} is listening to the {voice}."
+    def touch(self, object):
+        return f"{self.name} is touching the {object}."
+h = Humans(20, "male", "milk", "Nima", "house", "Humans", "hair", 80, True, False, 2.5, 1.5,"Black", "White", "Left")
+print(h.description())
+print(h.display())
+print(h.see("flower"))
+print(h.hibernate())
+print(h.hear("music"))
+print(h.touch("water"))
+print(h.eyeslevel())
