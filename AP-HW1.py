@@ -125,7 +125,7 @@ class Fish(VertebratesAnimal):
         return f"{self.name} hunting the {bait}."
     def description(self):
         if self.Coldblooded == True:
-            return f"{self.name} is {self.Species} and coldblooded fish with {self.age} years old."
+            return f"{self.name} is {self.Species} fish and coldblooded with {self.age} years old."
         else:
             return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old."
 f = Fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
@@ -239,3 +239,29 @@ print(h.hibernate())
 print(h.hear("music"))
 print(h.touch("water"))
 print(h.eyeslevel())
+
+class Shark(Fish):
+    def __init__(self, age, gender, diet, name, habitat, species, color, lifespan, gills, coldblooded, length, weight, is_wild: bool, teeth_rows: int, teeth_each_row: int):
+        super().__init__(age, gender, diet, name, habitat, species, color, lifespan, gills, coldblooded)
+        self.Length = length
+        self.Weight = weight
+        self.Is_Wild = is_wild
+        self.Teeth_Rows = teeth_rows
+        self.Teeth_Each_Row = teeth_each_row
+
+    def sleep(self):
+        return f"{self.name} is sleeping."
+    def get_length(self):
+        return f"{self.name}'s length is {self.Length} meters."
+    def run(self, hunter: str):
+        return f"{self.name} is running from {hunter}."
+    def teeth_count(self):
+        return f"{self.name} has {self.Teeth_Rows*self.Teeth_Each_Row} teeths."
+    def get_weight(self):
+        return f"{self.name}'s weight is {self.Weight} Kgs."
+s = Shark(7, "male", "fish", "sharky", "water", "Sharks", "Blue", 20, 4, True, 10, 500, True, 8, 150)
+print(s.get_weight())
+print(s.description())
+print(s.teeth_count())
+print(s.run("hunter"))
+print(s.hunt("dolphin"))
