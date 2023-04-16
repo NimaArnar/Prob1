@@ -1,5 +1,5 @@
 class Feather():
-    def __init__(self, owner, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
+    def __init__(self, owner: str, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
         self.Owner = owner
         self.Length = length
         self.Color = color
@@ -41,12 +41,12 @@ v = VertebratesAnimal(15,"male","food","odise","place")
 print(v.name)
 
 class Mammals(VertebratesAnimal):
-    def __init__(self, age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate: bool = True):
+    def __init__(self, age, gender, diet, name, habitat, species: str, covering: str, lifespan: int, fourchamberedheart: bool = True, hibernate: bool = True):
         super().__init__(age, gender, diet, name, habitat)
-        self.species = species
-        self.covering = covering
-        self.lifespan = lifespan
-        self.fourchamberedheart = fourchamberedheart
+        self.Species = species
+        self.Covering = covering
+        self.Lifespan = lifespan
+        self.FourChamberedHeart = fourchamberedheart
         self.Hibernate = hibernate
     def move(self):
         return f"{self.name} is moving"
@@ -55,16 +55,16 @@ class Mammals(VertebratesAnimal):
     def communicate(self):
         return f"{self.name} can communicate"
     def hibernate(self):
-        if self.hibernate == True:
+        if self.Hibernate == True:
             return f"{self.name} can hibernate"
         else:
             return f"{self.name} can not hibernate"
     def description(self):
-        return f"{self.name} is {self.species} mammals with {self.covering} body and {self.age} years old "
+        return f"{self.name} is {self.Species} mammals with {self.Covering} body and {self.age} years old "
 
-m = Mammals(23, "male", "meat", "Beeeear", "snow", "polar bear", "hair", 15, "Yes",False)
+m = Mammals(23, "male", "meat", "Beeeear", "snow", "polar bear", "hair", 15, False,False)
 print(m.swim())
-print(m.covering)
+print(m.Covering)
 print(m.hibernate())
 print(m.description())
 print(m.move())
@@ -186,4 +186,26 @@ print(a.jump())
 print(a.camouflage("trees"))
 print(a.description())
 
-
+class Whale(Mammals):
+    def __init__(self, age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate, weight, color, length):
+        super().__init__( age, gender, diet, name, habitat, species, covering, lifespan, fourchamberedheart, hibernate)
+        self.Weight = weight
+        self.Color = color
+        self.Length = length
+    def getWeight(self):
+        return f"{self.name}'s weight is {self.Weight} Kgs."
+    def getColor(self):
+        return f"{self.name}'s color is {self.Color}."
+    def getLentgh(self):
+        return f"{self.name}'s length is {self.Length} meters."
+    def hunt(self, bait):
+        return f"{self.name} is hunting the {bait}."
+w = Whale(12,"male","fish","whalee","water","Whales","smooth skin",20,True,False,"500","White","10")
+print(w.swim())
+print(w.description())
+print(w.move())
+print(w.hibernate())
+print(w.getLentgh())
+print(w.getColor())
+print(w.getWeight())
+print(w.hunt("red fish"))
