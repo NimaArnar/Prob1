@@ -1,3 +1,24 @@
+class Feather():
+    def __init__(self, owner, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
+        self.Owner = owner
+        self.Length = length
+        self.Color = color
+        self.Sort = sort
+        self.Is_curvy = is_curvy
+        self.Is_prickly = is_prickly
+    def __str__(self):
+        return f"owner = {self.Owner}, length = {self.Length}, sort = {self.Sort}, color = {self.Color}"
+    def growth(self):
+        return f"{self.Owner}'s feather is growing"
+    def fall(self):
+        return f"{self.Owner}'s feather is falling"
+    def fly(self):
+        return f"{self.Owner}' feather can be used for flight"
+    def insulate(self):
+        return f"feathers can insulate {self.Owner} from cold weather"
+    def description(self):
+        return f"{self.Owner} feather's color is {self.Color}. it is {self.Length} cm."
+
 class VertebratesAnimal:
     def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str):
         self.age = age
@@ -50,14 +71,14 @@ print(m.move())
 print(m.communicate())
 
 class Birds(VertebratesAnimal):
-    def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str, species, wingspan, lifespan, beakkind, is_wild: bool = True):
+    def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str, species: str, wingspan: str, lifespan: int, beakkind: str, is_wild: bool = True):
         super().__init__(age, gender, diet, name, habitat)
         self.Species = species
         self.Wingspan = wingspan
         self.Lifespan = lifespan
         self.Beakkind = beakkind
         self.Is_wild = is_wild
-
+        self.Feather = None # Composition
     def fly(self):
         return f"{self.name} is flying"
     def sing(self):
@@ -72,6 +93,7 @@ class Birds(VertebratesAnimal):
         else:
             return f"{self.name} is not wild"
 b = Birds(12,"male","wheat","parrot","nest","house sparrow", "circle",20,"curvy",True )
+b.Feather = Feather(b.name,10,"black","Down", True,False)
 print(b.fly())
 print(b.sing())
 print(b.name)
@@ -79,6 +101,8 @@ print(b.migrate())
 print(b.Wingspan)
 print(b.hunt("rabbit"))
 print(b.buildnests())
+print(b.Feather.fall())
+print(b.Feather)
 
 class Fish(VertebratesAnimal):
     def __init__(self, age, gender, diet, name, habitat, species, color, lifespan: int, gills: int, coldblooded : bool = True):
@@ -161,3 +185,5 @@ print(a.swim())
 print(a.jump())
 print(a.camouflage("trees"))
 print(a.description())
+
+
