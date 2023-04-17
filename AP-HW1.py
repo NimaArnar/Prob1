@@ -1,24 +1,3 @@
-class Feather():
-    def __init__(self, owner: str, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
-        self.Owner = owner
-        self.Length = length
-        self.Color = color
-        self.Sort = sort
-        self.Is_curvy = is_curvy
-        self.Is_prickly = is_prickly
-    def __str__(self):
-        return f"owner = {self.Owner}, length = {self.Length}, sort = {self.Sort}, color = {self.Color}"
-    def growth(self):
-        return f"{self.Owner}'s feather is growing."
-    def fall(self):
-        return f"{self.Owner}'s feather is falling."
-    def fly(self):
-        return f"{self.Owner}' feather can be used for flight."
-    def insulate(self):
-        return f"feathers can insulate {self.Owner} from cold weather."
-    def description(self):
-        return f"{self.Owner} feather's color is {self.Color}. it is {self.Length} cm."
-
 class VertebratesAnimal:
     def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str):
         self.age = age
@@ -78,7 +57,34 @@ class Birds(VertebratesAnimal):
         self.Lifespan = lifespan
         self.Beakkind = beakkind
         self.Is_wild = is_wild
-        self.Feather = None # Composition
+
+    class Feather:
+        def __init__(self, owner: str, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
+            self.Owner = owner
+            self.Length = length
+            self.Color = color
+            self.Sort = sort
+            self.Is_curvy = is_curvy
+            self.Is_prickly = is_prickly
+
+        def __str__(self):
+            return f"owner = {self.Owner}, length = {self.Length}, sort = {self.Sort}, color = {self.Color}"
+
+        def growth(self):
+            return f"{self.Owner}'s feather is growing."
+
+        def fall(self):
+            return f"{self.Owner}'s feather is falling."
+
+        def fly(self):
+            return f"{self.Owner}' feather can be used for flight."
+
+        def insulate(self):
+            return f"feathers can insulate {self.Owner} from cold weather."
+
+        def description(self):
+            return f"{self.Owner} feather's color is {self.Color}. it is {self.Length} cm."
+
     def fly(self):
         if self.Species == "Penguin":
             return f"{self.name} can't fly."
@@ -95,8 +101,11 @@ class Birds(VertebratesAnimal):
             return f"{self.name} hunted the {bait}."
         else:
             return f"{self.name} is not wild."
-b = Birds(12,"male","wheat","parrot","nest","house sparrow",1,20,"curvy",True)
-b.Feather = Feather(b.name,10,"black","Down", True,False)
+
+b = Birds(1,"male","wheat","parrottty","trees","parrot",1,3,"curvy",False)
+b.Feather = Birds.Feather(b.name,1,"green","down",False,False)
+print(b.Feather)
+print(b.name)
 print(b.fly())
 print(b.sing())
 print(b.name)
@@ -105,7 +114,6 @@ print(b.Wingspan)
 print(b.hunt("rabbit"))
 print(b.buildnests())
 print(b.Feather.fall())
-print(b.Feather)
 
 class Fish(VertebratesAnimal):
     def __init__(self, age, gender, diet, name, habitat, species, color, lifespan: int, gills: int, coldblooded : bool = True):
@@ -115,6 +123,26 @@ class Fish(VertebratesAnimal):
         self.Lifespan = lifespan
         self.Gills = gills
         self.Coldblooded = coldblooded
+
+    class Scales:
+        def __init__(self, owner: str, color: str, shape: str, sort: str, radius: int):
+            self.Owner = owner
+            self.Color = color
+            self.Shape = shape
+            self.Sort = sort
+            self.Radius = radius
+
+        def __str__(self):
+            return f"owner = {self.Owner}, shape = {self.Shape}, sort = {self.Sort}, color = {self.Color}, radius = {self.Radius}"
+
+        def growth(self, radius):
+            self.Radius += radius
+
+        def scale_area(self):
+            return (self.Radius) ** 2 * 3.14
+
+        def fall(self):
+            return f"{self.Owner}'s scale is falling."
 
     def swim(self):
         return f"{self.name} swims in the water."
@@ -131,7 +159,13 @@ class Fish(VertebratesAnimal):
             return f"{self.name} is {self.Species} fish and coldblooded with {self.age} years old."
         else:
             return f"{self.name} is {self.Species} and warmblooded fish with {self.age} years old."
+
 f = Fish(3, "male", "little fish", "fishfish", "water", "Shark", "blue", 10, 5, True)
+f.Scales = Fish.Scales(f.name,"silver","circle","Ctenoid",1)
+print(f.Scales)
+print(f.Scales.scale_area())
+f.Scales.growth(5)
+print(f.Scales.scale_area())
 print(f.breathe())
 print(f.swim())
 print(f.getcolor())
@@ -146,6 +180,27 @@ class Reptile(VertebratesAnimal):
         self.Species = species
         self.Is_wild = is_wild
         self.Reproduction = reproduction
+
+    class Scales:
+        def __init__(self, owner: str, color: str, shape: str, sort: str, radius: int):
+            self.Owner = owner
+            self.Color = color
+            self.Shape = shape
+            self.Sort = sort
+            self.Radius = radius
+
+        def __str__(self):
+            return f"owner = {self.Owner}, shape = {self.Shape}, sort = {self.Sort}, color = {self.Color}, radius = {self.Radius}"
+
+        def growth(self, radius):
+            self.Radius += radius
+
+        def scale_area(self):
+            return self.Radius ** 2 * 3.14
+
+        def fall(self):
+            return f"{self.Owner}'s scale is falling."
+
     def move(self):
         return f"{self.name} is moving."
     def hunt(self, bait):
@@ -287,12 +342,14 @@ class Penguin(Birds):
     def life_expectancy(self):
         return (self.Lifespan - self.age)
 p = Penguin(2, "male", "fish", "panguu", "ice", "Penguin", 1, 5, "curvy", False, 1, 15, "black and white", 30)
+p.Feather = Birds.Feather(p.name,1,"black","down",False,False)
 print(p.swim())
 print(p.hunt("fish"))
 print(p.display_beak())
 print(p.life_expectancy())
 print(p.description())
 print(p.fly())
+print(p.Feather)
 
 class Parrot(Birds):
     def __init__(self, age, gender, diet, name, habitat, species, wingspan, lifespan, beakkind, is_wild,main_color : str, multi_color: bool, size: str):
@@ -311,10 +368,13 @@ class Parrot(Birds):
         return f"{self.name} is {self.Species} birds. {self.name} is {self.age} years old with {self.Size} size."
 
 par = Parrot(1, "male", "wheat", "tooti", "trees", "Parrots", 1, 2, "curvy", False, "green", True, "small")
-par.Feather = Feather(par.name,1,"green","down",False,False)
+par.Feather = Birds.Feather(par.name,1,"green","down",False,False)
 print(par.speak())
 print(par.description())
 print(par.get_color())
 print(par.buildnests())
 print(par.Feather)
 print(par.Feather.fall())
+
+
+
