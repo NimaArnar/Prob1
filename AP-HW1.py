@@ -71,7 +71,7 @@ print(m.move())
 print(m.communicate())
 
 class Birds(VertebratesAnimal):
-    def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str, species: str, wingspan: str, lifespan: int, beakkind: str, is_wild: bool = True):
+    def __init__(self, age: int, gender: str, diet: str, name: str, habitat: str, species: str, wingspan: int, lifespan: int, beakkind: str, is_wild: bool = True):
         super().__init__(age, gender, diet, name, habitat)
         self.Species = species
         self.Wingspan = wingspan
@@ -80,19 +80,22 @@ class Birds(VertebratesAnimal):
         self.Is_wild = is_wild
         self.Feather = None # Composition
     def fly(self):
-        return f"{self.name} is flying"
+        if self.Species == "Penguin":
+            return f"{self.name} can't fly."
+        else:
+            return f"{self.name} is flying."
     def sing(self):
-        return f"{self.name} is singing"
+        return f"{self.name} is singing."
     def buildnests(self):
-        return f"{self.name} builds a nest"
+        return f"{self.name} builds a nest."
     def migrate(self):
         return f"Many species of bird migrate"
     def hunt(self, bait):
         if self.Is_wild == True:
-            return f"{self.name} hunted the {bait}"
+            return f"{self.name} hunted the {bait}."
         else:
-            return f"{self.name} is not wild"
-b = Birds(12,"male","wheat","parrot","nest","house sparrow", "circle",20,"curvy",True )
+            return f"{self.name} is not wild."
+b = Birds(12,"male","wheat","parrot","nest","house sparrow",1,20,"curvy",True)
 b.Feather = Feather(b.name,10,"black","Down", True,False)
 print(b.fly())
 print(b.sing())
@@ -265,3 +268,28 @@ print(s.description())
 print(s.teeth_count())
 print(s.run("hunter"))
 print(s.hunt("dolphin"))
+
+class Penguin(Birds):
+    def __init__(self, age, gender, diet, name, habitat, species, wingspan, lifespan, beakkind, is_wild, height: int, weight: int, color: str, beak_length: int, beak_color: str = "yellow"):
+        super().__init__(age, gender, diet, name, habitat, species, wingspan, lifespan, beakkind, is_wild)
+        self.Height = height
+        self.Weight = weight
+        self.Color = color
+        self.Beak_Length = beak_length
+        self.Beak_Color = beak_color
+
+    def swim(self):
+        return f"{self.name} is swimming."
+    def display_beak(self):
+        return f"{self.name}'s beak is {self.Beak_Length} cm and its color is {self.Beak_Color}."
+    def description(self):
+        return f"{self.name} is {self.Species} birds. but it can't fly. {self.name} is {self.age} years old with {self.Color} skin."
+    def life_expectancy(self):
+        return (self.Lifespan - self.age)
+p = Penguin(2, "male", "fish", "panguu", "ice", "Penguin", 1, 5, "curvy", False, 1, 15, "black and white", 30)
+print(p.swim())
+print(p.hunt("fish"))
+print(p.display_beak())
+print(p.life_expectancy())
+print(p.description())
+print(p.fly())
