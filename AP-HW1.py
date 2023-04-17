@@ -5,6 +5,7 @@ class VertebratesAnimal:
         self.diet = diet
         self.name = name
         self.habitat = habitat
+        self.House = None #Association
     def genAge(self):
         return self.age
     def getGender(self):
@@ -430,6 +431,18 @@ print(par.buildnests())
 print(par.Feather)
 print(par.Feather.fall())
 
+class House: #Association
+    def __init__(self, owner: str, location: str, no_rooms: int, color: str):
+        self.Owner = owner
+        self.Location = location
+        self.No_rooms = no_rooms
+        self.Color = color
 
+    def __str__(self):
+        return f"owner: {self.Owner}, location: {self.Location}, no_rooms: {self.No_rooms}, color: {self.Color}"
 
+    def get_color(self):
+        return f"{self.Owner}'s house color is {self.Color}"
 
+    def description(self):
+        return f"this house belongs to {self.Owner}. it has {self.No_rooms} rooms."
