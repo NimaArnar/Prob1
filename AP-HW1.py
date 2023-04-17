@@ -9,13 +9,13 @@ class Feather():
     def __str__(self):
         return f"owner = {self.Owner}, length = {self.Length}, sort = {self.Sort}, color = {self.Color}"
     def growth(self):
-        return f"{self.Owner}'s feather is growing"
+        return f"{self.Owner}'s feather is growing."
     def fall(self):
-        return f"{self.Owner}'s feather is falling"
+        return f"{self.Owner}'s feather is falling."
     def fly(self):
-        return f"{self.Owner}' feather can be used for flight"
+        return f"{self.Owner}' feather can be used for flight."
     def insulate(self):
-        return f"feathers can insulate {self.Owner} from cold weather"
+        return f"feathers can insulate {self.Owner} from cold weather."
     def description(self):
         return f"{self.Owner} feather's color is {self.Color}. it is {self.Length} cm."
 
@@ -293,3 +293,28 @@ print(p.display_beak())
 print(p.life_expectancy())
 print(p.description())
 print(p.fly())
+
+class Parrot(Birds):
+    def __init__(self, age, gender, diet, name, habitat, species, wingspan, lifespan, beakkind, is_wild,main_color : str, multi_color: bool, size: str):
+        super().__init__(age, gender, diet, name, habitat, species, wingspan, lifespan, beakkind, is_wild)
+        self.Multi_Color = multi_color
+        self.Size = size
+        self.Main_Color = main_color
+    def speak(self):
+        return f"{self.name} is speaking."
+    def get_color(self):
+        if self.Multi_Color == True:
+            return f"{self.name} is multi colored."
+        else:
+            return f"{self.name} is {self.Main_Color}."
+    def description(self):
+        return f"{self.name} is {self.Species} birds. {self.name} is {self.age} years old with {self.Size} size."
+
+par = Parrot(1, "male", "wheat", "tooti", "trees", "Parrots", 1, 2, "curvy", False, "green", True, "small")
+par.Feather = Feather(par.name,1,"green","down",False,False)
+print(par.speak())
+print(par.description())
+print(par.get_color())
+print(par.buildnests())
+print(par.Feather)
+print(par.Feather.fall())
