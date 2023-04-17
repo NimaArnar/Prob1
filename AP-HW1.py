@@ -27,6 +27,31 @@ class Mammals(VertebratesAnimal):
         self.Lifespan = lifespan
         self.FourChamberedHeart = fourchamberedheart
         self.Hibernate = hibernate
+
+    class Hair:
+        def __init__(self, owner: str, color: str, length: int, diameter: int, is_dry: bool):
+            self.Color = color
+            self.Length = length
+            self.Diameter = diameter
+            self.Owner = owner
+            self.Is_Dry = is_dry
+
+        def __str__(self):
+            return f'owner: {self.Owner}, color: {self.Color}, length: {self.Length}, diameter: {self.Diameter}, is_dry: {self.Is_Dry}'
+
+        def description(self):
+            return f"{self.Owner}'s hair is {self.Is_Dry}. his hair color is {self.Color}"
+
+        def growth(self, amount: int):
+            self.Length += amount
+
+        def fall(self, amount):
+            return f"{self.Owner}'s hair is falling."
+
+        def get_greasy(self):
+            if self.Is_Dry == False:
+                self.Is_Dry = True
+
     def move(self):
         return f"{self.name} is moving"
     def swim(self):
@@ -42,6 +67,10 @@ class Mammals(VertebratesAnimal):
         return f"{self.name} is {self.Species} mammals with {self.Covering} body and {self.age} years old "
 
 m = Mammals(23, "male", "meat", "Beeeear", "snow", "polar bear", "hair", 15, False,False)
+m.Hair = Mammals.Hair(m.name, "white", 2, 1, False)
+print(m.Hair)
+m.Hair.get_greasy()
+print(m.Hair)
 print(m.swim())
 print(m.Covering)
 print(m.hibernate())
@@ -375,6 +404,7 @@ print(par.get_color())
 print(par.buildnests())
 print(par.Feather)
 print(par.Feather.fall())
+
 
 
 
