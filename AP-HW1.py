@@ -28,7 +28,7 @@ class Mammals(VertebratesAnimal):
         self.FourChamberedHeart = fourchamberedheart
         self.Hibernate = hibernate
 
-    class Hair:
+    class Hair: #Composition
         def __init__(self, owner: str, color: str, length: int, diameter: int, is_dry: bool):
             self.Color = color
             self.Length = length
@@ -87,7 +87,7 @@ class Birds(VertebratesAnimal):
         self.Beakkind = beakkind
         self.Is_wild = is_wild
 
-    class Feather:
+    class Feather: #Composition
         def __init__(self, owner: str, length: int, color: str, sort: str, is_curvy: bool, is_prickly: bool):
             self.Owner = owner
             self.Length = length
@@ -144,6 +144,24 @@ print(b.hunt("rabbit"))
 print(b.buildnests())
 print(b.Feather.fall())
 
+class Venom:
+    def __init__(self, owner: str, is_deadly: bool, is_animal_venom: bool, medical_usage: bool):
+        self.Owner = owner
+        self.Is_deadly = is_deadly
+        self.Is_animal_venom = is_animal_venom
+        self.Medical_usage = medical_usage
+
+    def __str__(self):
+        return f"owner: {self.Owner} \nis_deadly: {self.Is_deadly}\nis_animal_venom: {self.Is_animal_venom}\n medical_usage: {self.Medical_usage}"
+
+    def description(self):
+        if self.Is_deadly == True:
+            return f"this venom belongs to {self.Owner}. its so dangerous."
+        else:
+            return f"this venom belongs to {self.Owner}. its not dangerous and can used for medicals."
+    def injection(self, target: str):
+        return f"{self.Owner}'s venom injected to the {target}' body."
+
 class Fish(VertebratesAnimal):
     def __init__(self, age, gender, diet, name, habitat, species, color, lifespan: int, gills: int, coldblooded : bool = True):
         super().__init__(age, gender, diet, name, habitat)
@@ -152,8 +170,9 @@ class Fish(VertebratesAnimal):
         self.Lifespan = lifespan
         self.Gills = gills
         self.Coldblooded = coldblooded
+        self.Venom = None #Aggregation
 
-    class Scales:
+    class Scales: #Composition
         def __init__(self, owner: str, color: str, shape: str, sort: str, radius: int):
             self.Owner = owner
             self.Color = color
@@ -209,8 +228,9 @@ class Reptile(VertebratesAnimal):
         self.Species = species
         self.Is_wild = is_wild
         self.Reproduction = reproduction
+        self.Venom = None  # Aggregation
 
-    class Scales:
+    class Scales: #Composition
         def __init__(self, owner: str, color: str, shape: str, sort: str, radius: int):
             self.Owner = owner
             self.Color = color
@@ -242,6 +262,9 @@ class Reptile(VertebratesAnimal):
         return f"{self.name} is {self.age} years old. it reproduces with {self.Reproduction} method. it has {self.Weight} kg."
 
 r = Reptile(4, "male", "meat", "Lizi", "deserts", 5, "Lizard", "lay eggs", False)
+r.Venom = Venom(r.name, True, True, False)
+print(r.Venom.description())
+print(r.Venom.injection("Human"))
 print(r.move())
 print(r.hunt("fly"))
 print(r.shed())
@@ -256,6 +279,8 @@ class Amphibians(VertebratesAnimal):
         self.Hibernates = hibernates
         self.Breathe = breathe
         self.Species = species
+        self.Venom = None  # Aggregation
+
     def breathing(self):
         return f"{self.name} breathes through its {self.Breathe}."
     def swim(self):
